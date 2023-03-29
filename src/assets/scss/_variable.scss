@@ -3,7 +3,7 @@
 
 :root {
   //color
-  --bv          : .5rem; 
+  --bv          : .5rem;
   --white       : #FFFFFF;
   --black       : #1B202D;
   --red         : #FF4F4F;
@@ -11,51 +11,26 @@
   --gray        : #B3B9C9;
   --light-gray  : #7A8194;
   --dark-gray   : #373E4E;
-  --blue        : #2271b1;
-  --main-color  : var(--black);
-  --base-color  : var(--dark-black)
-  --accent-color: var(--white);
+  --blue        : #03006A;
+  --orange      : #C95E30;
+  --main-color  : var(--blue);
+  --base-color  : var(--dark-black);
+  --accent-color: var(--orange);
 
 
   //font
   --font-family-main: 'Zen Maru Gothic', sans-serif;
-  --font-size--smallest: calc(var(--bv) * 1.5);
-  --font-size-small    : calc(var(--bv) * 1.75);
-  --font-size-medium   : calc(var(--bv) * 2);
-  --font-size-large    : calc(var(--bv) * 3);
+  --font-size-min  : calc(var(--bv) * 1.5);
+  --font-size-small : calc(var(--bv) * 1.75);
+  --font-size-medium: calc(var(--bv) * 2);
+  --font-size-large : calc(var(--bv) * 3);
 
   --line-height-normal   : 1.8;
   --line-height-narrow   : 1.4;
   --letter-spacing-normal: .02em;
-  --letter-spacing-long  : 0.35em;
+  --letter-spacing-medium: .15em;
+  --letter-spacing-long  : .35em;
   --letter-spacing-narrow: -0.05em;
   --z-index-max          : 99;
   --transition-time      : .3s;
-}
-
-//ブレイクポイント指定
-$breakpoints: (
-  'mobile': 'screen and (max-width: 424px)',
-  'tablet': 'screen and (max-width: 768px)',
-) !default;
-
-@mixin mediaScreen($breakpoint) {
-  @media #{map-get($breakpoints, $breakpoint)} {
-    @content;
-  }
-}
-
-//横幅に対して余白を取る
-@function viewMargin($contents, $margin) {
-  $value: (calc(100vw / $contents * $margin));
-  @return #{$value};
-}
-
-//clamp関数
-@function clampFunc($min, $default, $max, $bp: 1920) {
-  $min: $min * 1; 
-  $max: $max * 1; 
-  $num: math.div($min, $bp) * 100; 
-  $base: #{$num};
-  @return clamp(#{$min}px, #{$base}vw, #{$max}px)
 }
