@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+const isMenuOpen = ref(false)
 const lists: {id: string, section: string, link: string}[] = [
   {
     id     : '1',
@@ -35,27 +37,32 @@ const lists: {id: string, section: string, link: string}[] = [
 
 <template>
   <header :class="$style.header">
-    <h1 :class="$style.logo">
+    <p :class="$style.logo">
       <a href="/">LOGO</a>
-    </h1>
-    <button :class="$style.hamburger">
+    </p>
+    <button 
+      :class="[$style.hamburger, isMenuOpen ? $style.open : '']"
+      @click="isMenuOpen = !isMenuOpen"
+    >
       <span 
         v-for="i in 3"
         :key="i"
       />
     </button>
     <nav :class="$style.nav">
-      <ul :class="$style.list">
-        <li 
-          v-for="item in lists"
-          :key="item.id"
-          :class="$style.item"
-        >
-          <a :href="item.link">
-            {{ item.section }}
-          </a>
-        </li>
-      </ul>
+      <div :class="$style.modal">
+        <ul :class="$style.list">
+          <li 
+            v-for="item in lists"
+            :key="item.id"
+            :class="$style.item"
+          >
+            <a :href="item.link">
+              {{ item.section }}
+            </a>
+          </li>
+        </ul>
+      </div>
     </nav>
   </header>
 </template>
@@ -64,11 +71,16 @@ const lists: {id: string, section: string, link: string}[] = [
 @use '@/assets/scss/mixin' as *;
 
 .header {
-  position: fixed;
-  top     : calc(var(--bv) * 10);
-  left    : calc(var(--bv) * 5);
+  --font-size-logo: calc(var(--bv) * 5);
+  font-family     : var(--font-family-english);
+  position        : fixed;
+  top             : calc(var(--bv) * 10);
+  left            : calc(var(--bv) * 5);
+  z-index         : var(--z-index-max);
 
   .logo {
+    font-size     : var(--font-size-logo);
+    font-weight   : bold;
     letter-spacing: var(--letter-spacing-medium);
   }
 
@@ -105,7 +117,6 @@ const lists: {id: string, section: string, link: string}[] = [
 
   .nav {
     margin-block-start: calc(var(--bv) * 5);
-
     .list {
 
       li + li {
@@ -126,8 +137,35 @@ const lists: {id: string, section: string, link: string}[] = [
     }
 
     @include mediaScreen('tablet') {
-      opacity   : 0;
-      visibility: hidden;
+      position      : fixed;
+      top           : 0;
+      left          : 0;
+      width         : 100vw;
+      height        : 100%;
+      opacity       : 0;
+      visibility    : hidden;
+      pointer-events: none;
+
+      &.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+
+        .modal {
+          transform: translateX(0);
+        }
+      }
+
+      .modal {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: calc(var(--bv) * 4);
+        width: calc(100vw - calc(var(--bv) * 8));
+        height: 100%;
+        background-color: var(--white);
+        z-index: var(--z-index-modal);
+      }
     }
   }
 }

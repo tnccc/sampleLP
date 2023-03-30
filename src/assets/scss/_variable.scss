@@ -3,34 +3,38 @@
 
 :root {
   //color
-  --bv          : .5rem;
-  --white       : #FFFFFF;
-  --black       : #1B202D;
-  --red         : #FF4F4F;
-  --dark-black  : #292F3F;
-  --gray        : #B3B9C9;
-  --light-gray  : #7A8194;
-  --dark-gray   : #373E4E;
-  --blue        : #03006A;
-  --orange      : #C95E30;
-  --main-color  : var(--blue);
-  --base-color  : var(--dark-black);
-  --accent-color: var(--orange);
-
+  --bv               : .5rem;
+  --white            : #FFFFFF;
+  --black            : #1B202D;
+  --red              : #FF4F4F;
+  --dark-black       : #292F3F;
+  --gray             : #B3B9C9;
+  --light-gray       : #7A8194;
+  --dark-gray        : #373E4E;
+  --blue             : #03006A;
+  --orange           : #C95E30;
+  --main-color       : var(--blue);
+  --base-color       : var(--dark-black);
+  --accent-color     : var(--orange);
+  --transparent-color: rgba(255, 255, 255, .65);
 
   //font
-  --font-family-main: 'Zen Maru Gothic', sans-serif;
-  --font-size-min  : calc(var(--bv) * 1.5);
-  --font-size-small : calc(var(--bv) * 1.75);
-  --font-size-medium: calc(var(--bv) * 2);
-  --font-size-large : calc(var(--bv) * 3);
+  --font-family-english: 'Zen Maru Gothic', sans-serif;
+  --font-size-min      : calc(var(--bv) * 1.5);
+  --font-size-small    : calc(var(--bv) * 1.75);
+  --font-size-medium   : calc(var(--bv) * 2);
+  --font-size-large    : calc(var(--bv) * 3);
 
+  --golden-ratio         : 1 / 1.1618;
+  --silver-ratio         : 1 / 1.414l
   --line-height-normal   : 1.8;
   --line-height-narrow   : 1.4;
   --letter-spacing-normal: .02em;
   --letter-spacing-medium: .15em;
   --letter-spacing-long  : .35em;
   --letter-spacing-narrow: -0.05em;
+  --z-index-modal        : 30;
+  --z-index-contents     : 50;
   --z-index-max          : 99;
   --transition-time      : .3s;
 }

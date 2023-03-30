@@ -8,9 +8,8 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
-    "lint": "eslint --ext .ts,vue --ignore-path .gitignore .",
-    "lint-fix": "eslint --ext .ts,vue --ignore-path .gitignore . && prettier --write src/**/*.{ts,vue}",
-    "format": "prettier --write src/"
+    "lint": "eslint --ext .ts, .vue --ignore-path .gitignore .",
+    "lint-fix": "eslint --ext .ts, .vue --ignore-path .gitignore . && prettier --write src/**/*.{ts,vue}"
   },
   "dependencies": {
     "ress": "^5.0.2",
