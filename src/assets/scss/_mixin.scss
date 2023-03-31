@@ -11,3 +11,30 @@
   letter-spacing  : 0.1em;
 }
 
+
+//ブレイクポイント指定
+$breakpoints: (
+  'mobile': 'screen and (width < 424px)',
+  'tablet': 'screen and (width < 768px)',
+) !default;
+
+@mixin mediaScreen($breakpoint) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+//横幅に対して余白を取る
+@function viewMargin($contents, $margin) {
+  $value: (calc(100vw / $contents * $margin));
+  @return #{$value};
+}
+
+//clamp関数
+@function clampFunc($min, $default, $max, $bp: 1920) {
+  $min: $min * 1; 
+  $max: $max * 1; 
+  $num: math.div($min, $bp) * 100; 
+  $base: #{$num};
+  @return clamp(#{$min}px, #{$base}vw, #{$max}px)
+}

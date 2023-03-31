@@ -3,8 +3,9 @@ html {
 }
 
 body {
+  color                : var(--main-color);
   background-color     : var(--white);
-  font-family          : var(--font-family-main);
+  font-family          : sans-serif;
   line-height          : var(--line-height-normal);
   letter-spacing       : var(--letter-spacing-normal);
   word-wrap            : break-word;
