@@ -49,7 +49,11 @@ const lists: {id: string, section: string, link: string}[] = [
         :key="i"
       />
     </button>
-    <nav :class="$style.nav">
+    <nav
+      :class="[
+        $style.nav, isMenuOpen ? $style.open : ''
+      ]"
+    >
       <div :class="$style.modal">
         <ul :class="$style.list">
           <li 
@@ -62,6 +66,13 @@ const lists: {id: string, section: string, link: string}[] = [
             </a>
           </li>
         </ul>
+        <button 
+          :class="$style.close"
+          @click="isMenuOpen = false
+          "
+        >
+          × CLOSE
+        </button>
       </div>
     </nav>
   </header>
@@ -79,9 +90,16 @@ const lists: {id: string, section: string, link: string}[] = [
   z-index         : var(--z-index-max);
 
   .logo {
+    position      : relative;
     font-size     : var(--font-size-logo);
     font-weight   : bold;
     letter-spacing: var(--letter-spacing-medium);
+    z-index       : calc(var(--z-index-max) + 1);
+  }
+
+  @include mediaScreen('tablet') {
+    top : calc(var(--bv) * 5);
+    left: calc((var(--bv) * 4));
   }
 
   .hamburger {
@@ -137,14 +155,17 @@ const lists: {id: string, section: string, link: string}[] = [
     }
 
     @include mediaScreen('tablet') {
-      position      : fixed;
-      top           : 0;
-      left          : 0;
-      width         : 100vw;
-      height        : 100%;
-      opacity       : 0;
-      visibility    : hidden;
-      pointer-events: none;
+      position          : fixed;
+      top               : 0;
+      left              : 0;
+      margin-block-start: 0;
+      width             : 100vw;
+      height            : 100%;
+      opacity           : 0;
+      visibility        : hidden;
+      pointer-events    : none;
+      backdrop-filter   : blur(10px);
+      transition        : opacity .5s;
 
       &.open {
         opacity: 1;
@@ -156,15 +177,31 @@ const lists: {id: string, section: string, link: string}[] = [
         }
       }
 
+      .list {
+        padding-top: calc((var(--bv) * 10));
+      }
+
       .modal {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: calc(var(--bv) * 4);
-        width: calc(100vw - calc(var(--bv) * 8));
-        height: 100%;
+        position        : absolute;
+        top             : 0;
+        left            : 0;
+        padding         : calc(var(--bv) * 4);
+        width           : calc(100vw - calc(var(--bv) * 8));
+        height          : 100%;
         background-color: var(--white);
-        z-index: var(--z-index-modal);
+        transition      : transform 375ms cubic-bezier(.47, 0, .745, .715);
+        transform       : translateX(-100%);
+        z-index         : var(--z-index-modal);
+      }
+
+      .close {
+        position      : absolute;
+        bottom        : calc(var(--bv) * 4);
+        padding       : calc(var(--bv) * 2);
+        width         : calc(100% - calc(var(--bv) * 7.5));
+        color         : var(--main-color);
+        border        : solid 1px var(--main-color);
+        letter-spacing: var(--letter-spacing-medium);
       }
     }
   }

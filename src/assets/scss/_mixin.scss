@@ -14,8 +14,8 @@
 
 //ブレイクポイント指定
 $breakpoints: (
-  'mobile': 'screen and (max-width: 424px)',
-  'tablet': 'screen and (max-width: 768px)',
+  'mobile': 'screen and (width < 424px)',
+  'tablet': 'screen and (width < 768px)',
 ) !default;
 
 @mixin mediaScreen($breakpoint) {

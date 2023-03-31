@@ -24,7 +24,7 @@
 
 .container {
   --font-size-hero: calc(var(--bv) * 6.5);
-  width: 100dvw;
+  width: 100%;
   height: 100dvh;
 
   @include mediaScreen('tablet') {
