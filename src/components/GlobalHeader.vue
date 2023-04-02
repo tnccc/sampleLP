@@ -67,6 +67,7 @@ const lists: {id: string, section: string, link: string}[] = [
           </li>
         </ul>
         <button 
+          v-show="isMenuOpen"
           :class="$style.close"
           @click="isMenuOpen = false
           "
@@ -135,6 +136,7 @@ const lists: {id: string, section: string, link: string}[] = [
 
   .nav {
     margin-block-start: calc(var(--bv) * 5);
+
     .list {
 
       li + li {
@@ -165,11 +167,12 @@ const lists: {id: string, section: string, link: string}[] = [
       visibility        : hidden;
       pointer-events    : none;
       backdrop-filter   : blur(10px);
-      transition        : opacity .5s;
+      transition        : opacity .5s, visibility .5s;
+      z-index           : calc(var(--z-index-modal) + 1px);
 
       &.open {
-        opacity: 1;
-        visibility: visible;
+        opacity       : 1;
+        visibility    : visible;
         pointer-events: auto;
 
         .modal {
