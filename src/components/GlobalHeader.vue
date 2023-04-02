@@ -67,6 +67,7 @@ const lists: {id: string, section: string, link: string}[] = [
           </li>
         </ul>
         <button 
+          v-show="isMenuOpen"
           :class="$style.close"
           @click="isMenuOpen = false
           "
@@ -88,6 +89,10 @@ const lists: {id: string, section: string, link: string}[] = [
   top             : calc(var(--bv) * 10);
   left            : calc(var(--bv) * 5);
   z-index         : var(--z-index-max);
+
+  @include mediaScreen('tablet') {
+    --font-size-logo: calc(var(--bv) * 3.5);
+  }
 
   .logo {
     position      : relative;
@@ -135,6 +140,7 @@ const lists: {id: string, section: string, link: string}[] = [
 
   .nav {
     margin-block-start: calc(var(--bv) * 5);
+
     .list {
 
       li + li {
@@ -165,11 +171,12 @@ const lists: {id: string, section: string, link: string}[] = [
       visibility        : hidden;
       pointer-events    : none;
       backdrop-filter   : blur(10px);
-      transition        : opacity .5s;
+      transition        : opacity .5s, visibility .5s;
+      z-index           : calc(var(--z-index-modal) + 1px);
 
       &.open {
-        opacity: 1;
-        visibility: visible;
+        opacity       : 1;
+        visibility    : visible;
         pointer-events: auto;
 
         .modal {

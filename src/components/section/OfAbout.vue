@@ -46,7 +46,12 @@ import SectionHeading from '@/components/SectionHeading.vue';
     }
 
     @include mediaScreen('tablet') {
-      width: 100%;
+      margin-top: calc((var(--bv) * 6));
+      width     : 100%;
+
+      p + p {
+        margin-top: calc(var(--bv) * 1.5);
+      }
     }
   }
 }

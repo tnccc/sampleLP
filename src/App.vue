@@ -2,6 +2,7 @@
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import SectionOfHero from '@/components/section/OfHero.vue'
 import SectionOfAbout from '@/components/section/OfAbout.vue'
+import SectionOfSolution from '@/components/section/OfSolution.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import SectionOfAbout from '@/components/section/OfAbout.vue'
   <main :class="$style.main">
     <SectionOfHero />
     <SectionOfAbout />
+    <SectionOfSolution />
   </main>
 </template>
 
