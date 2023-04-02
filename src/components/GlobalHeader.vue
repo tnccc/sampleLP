@@ -90,6 +90,10 @@ const lists: {id: string, section: string, link: string}[] = [
   left            : calc(var(--bv) * 5);
   z-index         : var(--z-index-max);
 
+  @include mediaScreen('tablet') {
+    --font-size-logo: calc(var(--bv) * 3.5);
+  }
+
   .logo {
     position      : relative;
     font-size     : var(--font-size-logo);

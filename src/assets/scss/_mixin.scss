@@ -16,6 +16,7 @@
 $breakpoints: (
   'mobile': 'screen and (width < 424px)',
   'tablet': 'screen and (width < 768px)',
+  'desktop': 'screen and (width < 1024px)',
 ) !default;
 
 @mixin mediaScreen($breakpoint) {
