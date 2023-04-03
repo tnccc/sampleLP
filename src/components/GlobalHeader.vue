@@ -150,7 +150,7 @@ const lists: {id: string, section: string, link: string}[] = [
 
         a {
           display   : block;
-          font-size : var(--font-size-min);
+          font-size : var(--font-size-small);
           transition: color .3s;
 
           &:hover {
