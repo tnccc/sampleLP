@@ -57,6 +57,38 @@ const props = withDefaults(defineProps<Props>(), {
 @use '@/assets/scss/mixin' as *;
 
 .container {
-  width: 100%;
+
+  .heading {
+
+    p {
+      font-size: var(--font-size-small);
+      color    : var(--silver-gray);
+    }
+
+    h3 {
+      margin-top: var(--bv);
+      font-size: calc(var(--font-size-large));
+    }
+  }
+
+  .description {
+
+    > p {
+      font-size: var(--font-size-small);
+    }
+  }
+
+  .links {
+    margin-top: calc(var(--bv) * 2);
+
+    .link {
+      display: inline-block;
+      color: var(--accent-color);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 </style>

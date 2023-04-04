@@ -9,7 +9,7 @@
 
 .container {
   margin     : 0 auto 0 calc(var(--bv) * 20);
-  padding: calc(var(--bv) * 18) calc(var(--bv) * 12) 0;
+  padding: calc(var(--bv) * 18) calc(var(--bv) * 12);
   max-width  : var(--desktop-width);
 
   @include mediaScreen('tablet') {
