@@ -58,6 +58,10 @@ const props = withDefaults(defineProps<Props>(), {
 
 .container {
 
+  .figure {
+    aspect-ratio: 1 / 1;
+  }
+
   .heading {
 
     p {
