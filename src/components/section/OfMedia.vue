@@ -56,10 +56,20 @@ const items = [
       :ja="'メディア'"
     />
     <div :class="$style.contents">
-      <div :class="$style.list">
-        <ItemCard 
-          :items="items"
-        />
+      <div :class="$style.article">
+        <article :class="$style.list">
+          <ItemCard 
+            :items="items"
+          />
+        </article>
+      </div>
+      <div :class="$style.article">
+        <h3>○○についてもお伝えしています</h3>
+        <article :class="$style.list">
+          <ItemCard 
+            :items="items"
+          />
+        </article>
       </div>
     </div>
   </SectionContainer>
@@ -69,45 +79,65 @@ const items = [
 @use '@/assets/scss/mixin' as *;
 
 .container {
+  --scroll-margin: calc(var(--bv) * 2);
 
   .contents {
-    --scroll-margin: calc(var(--bv) * 2);
     margin-top: calc(var(--bv) * 10 + var(--scroll-margin));
-    overflow-x: auto;
 
-    &::-webkit-scrollbar {
-      width: 3px;
-      height: 3px;
-    }
+    .article {
+      overflow-x: auto;
 
-    &::-webkit-scrollbar-thumb {
-      background: var(--main-color);
-      border-radius: 5px;
-    }
+      + .article {
+        margin-top: calc(var(--bv) * 12);
 
-    &::-webkit-scrollbar-track {
-      background: rgba(3, 0, 106, .12);
-    }
-
-    .list {
-      margin-bottom: var(--scroll-margin);
-      display: flex;
-      gap: 0 calc(var(--bv) * 3);
-
-      > div {
-        min-width: 250px;
-
-        p {
-          margin-top: calc(var(--bv) * 1.75);
+        @include mediaScreen('tablet') {
+          margin-top: calc(var(--bv) * 4);
         }
 
-        h3 {
-          font-size: var(--font-size-larger);
+        .list {
+          padding-top: calc(var(--bv) * 4);
         }
       }
+  
+      h3 {
+        font-size: var(--font-size-medium);
+      }
 
-      
+      &::-webkit-scrollbar {
+        width: 3px;
+        height: 3px;
+      }
+  
+      &::-webkit-scrollbar-thumb {
+        background: var(--main-color);
+        border-radius: 5px;
+      }
+  
+      &::-webkit-scrollbar-track {
+        background: rgba(3, 0, 106, .12);
+      }
+  
+      .list {
+        margin-bottom: var(--scroll-margin);
+        display: flex;
+        gap: 0 calc(var(--bv) * 3);
+  
+        > div {
+          min-width: 250px;
+  
+          p {
+            margin-top: calc(var(--bv) * 1.75);
+          }
+  
+          h3 {
+            font-size: var(--font-size-larger);
+          }
+        }
+  
+        
+      }
     }
   }
+
 }
 </style>

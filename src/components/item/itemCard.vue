@@ -29,6 +29,7 @@ const props = withDefaults(defineProps<Props>(), {
       <img
         :src="imageUrl(item.images)"
         :alt="item.alt"
+        loading="lazy"
       >
     </figure>
     <div :class="$style.heading">
