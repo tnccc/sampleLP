@@ -5,6 +5,7 @@ import SectionOfAbout from '@/components/section/OfAbout.vue'
 import SectionOfSolution from '@/components/section/OfSolution.vue'
 import SectionOfWorks from '@/components/section/OfWorks.vue'
 import SectionOfMedia from '@/components/section/OfMedia.vue'
+import SectionOfTeam from '@/components/section/OfTeam.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import SectionOfMedia from '@/components/section/OfMedia.vue'
     <SectionOfSolution />
     <SectionOfWorks />
     <SectionOfMedia />
+    <SectionOfTeam />
   </main>
 </template>
 

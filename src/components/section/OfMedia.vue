@@ -133,11 +133,8 @@ const items = [
             font-size: var(--font-size-larger);
           }
         }
-  
-        
       }
     }
   }
-
 }
 </style>
