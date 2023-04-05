@@ -1,0 +1,34 @@
+[
+  {
+    "images"  : "sample.webp",
+    "alt"     : "sample",
+    "heading" : "みらいのしごと",
+    "text"    : "`テキストテキストテキストテキストテキスト<br>テキストテキストテキスト<br>テキストテキストテキストテキストテキスト`",
+    "category": "WORKS",
+    "link"    : "https://www.google.co.jp/",
+    "linkText": "リンク1"
+  },
+  {
+    "images"  : "sample.webp",
+    "alt"     : "sample",
+    "category": "FEATURE",
+    "heading" : "新時代",
+    "text"    : "`テキストテキストテキストテキストテキスト<br>テキストテキストテキスト<br>テキストテキストテキストテキストテキスト`"
+  },
+  {
+    "images" : "sample.webp",
+    "alt"    : "sample",
+    "heading": "企業理念",
+    "text"   : "`テキストテキストテキストテキストテキスト<br>テキストテキストテキスト<br>テキストテキストテキストテキストテキスト`"
+  },
+  {
+    "images"   : "sample.webp",
+    "alt"      : "sample",
+    "heading"  : "新サービス",
+    "text"     : "`テキストテキストテキストテキストテキスト<br>テキストテキストテキスト<br>テキストテキストテキストテキストテキスト`",
+    "link"     : "https://www.google.co.jp/",
+    "linkText" : "リンク1",
+    "link2"    : "https://www.google.co.jp/",
+    "linkText2": "リンク2"
+  }
+]
