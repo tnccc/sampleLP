@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import SectionContainer from '@/components/SectionContainer.vue'
 import SectionHeading from '@/components/SectionHeading.vue';
+import ModalWindow from '@/components/ModalWindow.vue';
 
-const team = [
+const isModalOpen = ref(false)
+const teams = [
   {
     position: '代表',
     name    : '田中太郎',
@@ -59,28 +62,67 @@ const imageUrl = (image: any) => {
       :ja="'チーム'"
     />
     <div :class="$style.contents">
+      <button @click="isModalOpen = true">
+        ModalOpen
+      </button>
       <div :class="$style.team">
         <ul :class="$style.list">
           <li 
-            v-for="(item, index) in team"
+            v-for="(item, index) in teams"
             :key="index"
             :class="$style.item"
           >
-            <figure :class="$style.image">
-              <img 
-                :src="imageUrl(item.image)"
-                :alt="item.alt"
-              >
-            </figure>
-            <div :class="$style.description">
-              <p>{{ item.position }}</p>
-              <h3>{{ item.name }}</h3>
-              <p>{{ item.subName }}</p>
-            </div>
+            <a :class="$style.box">
+              <figure :class="$style.image">
+                <img 
+                  :src="imageUrl(item.image)"
+                  :alt="item.alt"
+                >
+              </figure>
+              <div :class="$style.description">
+                <p>{{ item.position }}</p>
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.subName }}</p>
+              </div>
+            </a>
           </li>
         </ul>
       </div>
     </div>
+    <Teleport to="body">
+      <transition>
+        <div 
+          v-show="isModalOpen"
+          :class="$style.modal"
+        >
+          <div v-for="item in teams">
+            <ModalWindow>
+              <template #image>
+                <figure>
+                  <img
+                    :src="imageUrl(item.images)"
+                    :alt="item.alt"
+                    loading="lazy"
+                  >
+                </figure>
+              </template>
+              <template #heading>
+                <p :class="$style.position">
+                  {{ item.position }}
+                </p>
+                <h2 :class="$style.name">
+                  <span>{{ item.name }}</span>
+                  <span>{{ item.subName }}</span>
+                </h2>
+                <p>
+                  {{ item.text }}
+                </p>
+              </template>
+            </ModalWindow>
+          </div>
+        </div>
+      </transition>
+    </Teleport>
   </SectionContainer>
 </template>
 
@@ -109,18 +151,37 @@ const imageUrl = (image: any) => {
         display: block;
         width  : calc((100% / 4) - var(--list-margin));
       }
-
-      @include mediaScreen('tablet') {
-
-      }
   
       .item {
         flex : 1 0 calc((100% / 4) - var(--list-margin));
         width: calc((100% / 4) - var(--list-margin));
 
+        &:hover {
+
+          .description {
+            
+            > * {
+              color     : var(--accent-color);
+              transition: color .3s;
+            }
+            
+            p {
+
+              &:last-of-type {
+                color     : var(--accent-color);
+                transition: color .3s;
+              }
+            }
+          }
+        }
+
         @include mediaScreen('tablet') {
           flex : 1 0 calc((100% / 2) - var(--list-margin));
           width: calc((100% / 2) - var(--list-margin));
+        }
+
+        .box {
+          cursor: pointer;
         }
 
         .description {
@@ -140,6 +201,40 @@ const imageUrl = (image: any) => {
               font-size : var(--font-size-min);
               color     : var(--silver-gray);
             }
+          }
+        }
+      }
+    }
+  }
+
+  .modal {
+
+    .image {
+
+      figure {
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    .heading {
+      color: var(--main-color);
+
+      > p {
+        font-size  : var(--font-size-small);
+        font-weight: 400;
+        }
+
+      h2 {
+        display: flex;
+        gap    : 0 calc(var(--bv) * 4);
+
+        span {
+          font-size: var(--font-size-large);
+          color    : var(--main-color);
+
+          &:not(:first-of-type) {
+            font-size: var(--font-size-min);
+            color    : var(--silver-gray);
           }
         }
       }
