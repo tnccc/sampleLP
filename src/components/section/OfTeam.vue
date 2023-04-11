@@ -3,7 +3,18 @@ import { ref } from 'vue'
 import SectionContainer from '@/components/SectionContainer.vue'
 import SectionHeading from '@/components/SectionHeading.vue';
 import ModalWindow from '@/components/ModalWindow.vue';
+import { computed } from 'vue';
 
+
+//TODO
+//modalWindowを表示させるために、
+//カードの要素がクリックすされると
+//モーダル内に必要なitem(配列)の情報が渡るようにする
+
+//TODO
+//配列のデータをわざわざJsonにする必要はない
+//moduleにして別のディレクトリで管理
+//fetchで取得する
 const isModalOpen = ref(false)
 const teams = [
   {
@@ -49,10 +60,13 @@ const teams = [
     alt     : 'team03',
   },
 ]
-
 const imageUrl = (image: any) => {
   return new URL(`/src/assets/images/${image}`, import.meta.url)
 }
+const modalItem = ref({})
+const test = computed(() => {
+  return modalItem.value
+})
 </script>
 
 <template>
@@ -71,6 +85,7 @@ const imageUrl = (image: any) => {
             v-for="(item, index) in teams"
             :key="index"
             :class="$style.item"
+            @click="modalItem = item"
           >
             <a :class="$style.box">
               <figure :class="$style.image">
@@ -84,6 +99,7 @@ const imageUrl = (image: any) => {
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.subName }}</p>
               </div>
+              {{ test }}
             </a>
           </li>
         </ul>
@@ -95,31 +111,7 @@ const imageUrl = (image: any) => {
           v-show="isModalOpen"
           :class="$style.modal"
         >
-          <div v-for="item in teams">
-            <ModalWindow>
-              <template #image>
-                <figure>
-                  <img
-                    :src="imageUrl(item.images)"
-                    :alt="item.alt"
-                    loading="lazy"
-                  >
-                </figure>
-              </template>
-              <template #heading>
-                <p :class="$style.position">
-                  {{ item.position }}
-                </p>
-                <h2 :class="$style.name">
-                  <span>{{ item.name }}</span>
-                  <span>{{ item.subName }}</span>
-                </h2>
-                <p>
-                  {{ item.text }}
-                </p>
-              </template>
-            </ModalWindow>
-          </div>
+          <ModalWindow :item="modalItem" />
         </div>
       </transition>
     </Teleport>
@@ -201,40 +193,6 @@ const imageUrl = (image: any) => {
               font-size : var(--font-size-min);
               color     : var(--silver-gray);
             }
-          }
-        }
-      }
-    }
-  }
-
-  .modal {
-
-    .image {
-
-      figure {
-        aspect-ratio: 1 / 1;
-      }
-    }
-
-    .heading {
-      color: var(--main-color);
-
-      > p {
-        font-size  : var(--font-size-small);
-        font-weight: 400;
-        }
-
-      h2 {
-        display: flex;
-        gap    : 0 calc(var(--bv) * 4);
-
-        span {
-          font-size: var(--font-size-large);
-          color    : var(--main-color);
-
-          &:not(:first-of-type) {
-            font-size: var(--font-size-min);
-            color    : var(--silver-gray);
           }
         }
       }

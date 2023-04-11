@@ -1,18 +1,22 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
+
 type Emits = {
   (onClick: string, value: string): void
 }
 
 type Props = {
-  defaultStatus: boolean,
+  item: any,
 }
 const emit =  defineEmits<Emits>()
-const props = withDefaults(defineProps<Props>(), {
-  defaultStatus: false,
-})
-const onClick = e => {
-  emit('modalWindowClick', e.target.value)
+const props = defineProps<Props>()
+const modalCloseClick = e => {
+  emit('onClick', e.target.value)
 }
+const imageUrl = (image: any) => {
+  return new URL(`/src/assets/images/${image}`, import.meta.url)
+}
+console.log(props.item)
 </script>
 
 <template>
@@ -20,15 +24,28 @@ const onClick = e => {
     :class="$style.container"
   >
     <div :class="$style.contents">
-      <div :class="$style.image">
-        <slot name="image" />
-      </div>
+      <figure>
+        <img
+          :src="imageUrl(images)"
+          :alt="alt"
+          loading="lazy"
+        >
+      </figure>
       <div :class="$style.heading">
-        <slot name="heading" />
+        <p :class="$style.position">
+          {{ position }}
+        </p>
+        <h2 :class="$style.name">
+          <span>{{ name }}</span>
+          <span>{{ subName }}</span>
+          <p>
+            {{ text }}
+          </p>
+        </h2>
       </div>
       <button 
         :class="$style.modal_close"
-        @click="onClick"
+        @click="modalCloseClick"
       >
         CLOSE ×
       </button>
@@ -51,6 +68,37 @@ const onClick = e => {
     height          : 100%;
     background-color: var(--white);
     z-index         : var(--z-index-contents);
+  }
+
+  .image {
+
+    figure {
+      aspect-ratio: 1 / 1;
+    }
+  }
+
+  .heading {
+    color: var(--main-color);
+
+    > p {
+      font-size  : var(--font-size-small);
+      font-weight: 400;
+    }
+
+    h2 {
+        display: flex;
+        gap    : 0 calc(var(--bv) * 4);
+
+        span {
+          font-size: var(--font-size-large);
+          color    : var(--main-color);
+
+          &:not(:first-of-type) {
+            font-size: var(--font-size-min);
+            color    : var(--silver-gray);
+          }
+        }
+      }
   }
 }
 </style>
