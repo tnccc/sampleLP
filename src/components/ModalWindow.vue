@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
-
 type Emits = {
-  (onClick: string, value: string): void
+  (onClick: string): void
 }
 
 type Props = {
@@ -10,13 +8,13 @@ type Props = {
 }
 const emit =  defineEmits<Emits>()
 const props = defineProps<Props>()
-const modalCloseClick = e => {
-  emit('onClick', e.target.value)
+const modalCloseClick = () => {
+  emit('onClick')
 }
 const imageUrl = (image: any) => {
   return new URL(`/src/assets/images/${image}`, import.meta.url)
 }
-console.log(props.item)
+console.log(props.item.images)
 </script>
 
 <template>
@@ -26,20 +24,20 @@ console.log(props.item)
     <div :class="$style.contents">
       <figure>
         <img
-          :src="imageUrl(images)"
-          :alt="alt"
+          :src="imageUrl(item.image)"
+          :alt="item.alt"
           loading="lazy"
         >
       </figure>
       <div :class="$style.heading">
         <p :class="$style.position">
-          {{ position }}
+          {{ item.position }}
         </p>
         <h2 :class="$style.name">
-          <span>{{ name }}</span>
-          <span>{{ subName }}</span>
+          <span>{{ item.name }}</span>
+          <span>{{ item.subName }}</span>
           <p>
-            {{ text }}
+            {{ item.text }}
           </p>
         </h2>
       </div>
@@ -60,11 +58,13 @@ console.log(props.item)
   left            : 0;
   width           : 100%;
   height          : 100vh;
-  background-color: rgba(245, 245, 248, .1);
+  background-color: rgba(245, 245, 248, .75);
 
   .contents {
     position        : fixed;
     right           : 0;
+    flex            : 1 0 calc(100% / 4);
+    width           : calc(100% / 4);
     height          : 100%;
     background-color: var(--white);
     z-index         : var(--z-index-contents);

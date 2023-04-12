@@ -4,8 +4,6 @@ import SectionContainer from '@/components/SectionContainer.vue'
 import SectionHeading from '@/components/SectionHeading.vue';
 import ModalWindow from '@/components/ModalWindow.vue';
 import { computed } from 'vue';
-
-
 //TODO
 //modalWindowを表示させるために、
 //カードの要素がクリックすされると
@@ -15,7 +13,7 @@ import { computed } from 'vue';
 //配列のデータをわざわざJsonにする必要はない
 //moduleにして別のディレクトリで管理
 //fetchで取得する
-const isModalOpen = ref(false)
+
 const teams = [
   {
     position: '代表',
@@ -63,10 +61,12 @@ const teams = [
 const imageUrl = (image: any) => {
   return new URL(`/src/assets/images/${image}`, import.meta.url)
 }
+const isModalOpen = ref(false)
 const modalItem = ref({})
-const test = computed(() => {
-  return modalItem.value
-})
+const toggleModal = (item: any) => {
+  modalItem.value = item
+  isModalOpen.value = true
+}
 </script>
 
 <template>
@@ -85,7 +85,7 @@ const test = computed(() => {
             v-for="(item, index) in teams"
             :key="index"
             :class="$style.item"
-            @click="modalItem = item"
+            @click="toggleModal(item)"
           >
             <a :class="$style.box">
               <figure :class="$style.image">
@@ -99,7 +99,6 @@ const test = computed(() => {
                 <h3>{{ item.name }}</h3>
                 <p>{{ item.subName }}</p>
               </div>
-              {{ test }}
             </a>
           </li>
         </ul>
@@ -111,7 +110,10 @@ const test = computed(() => {
           v-show="isModalOpen"
           :class="$style.modal"
         >
-          <ModalWindow :item="modalItem" />
+          <ModalWindow 
+            :item="modalItem"
+            @onClick="isModalOpen = false" 
+          />
         </div>
       </transition>
     </Teleport>
