@@ -36,16 +36,17 @@ console.log(props.item.images)
         <h2 :class="$style.name">
           <span>{{ item.name }}</span>
           <span>{{ item.subName }}</span>
-          <p>
-            {{ item.text }}
-          </p>
         </h2>
+        <p
+          :class="$style.text"
+          v-html="item.text"
+        />
       </div>
       <button 
-        :class="$style.modal_close"
+        :class="$style.button"
         @click="modalCloseClick"
       >
-        CLOSE ×
+        <span>CLOSE ×</span>
       </button>
     </div>
   </div>
@@ -63,6 +64,10 @@ console.log(props.item.images)
   .contents {
     position        : fixed;
     right           : 0;
+    padding         : calc(var(--bv) * 8) calc(var(--bv) * 4);
+    display         : flex;
+    flex-direction  : column;
+    gap             : calc(var(--bv) * 5) 0;
     flex            : 1 0 calc(100% / 4);
     width           : calc(100% / 4);
     height          : 100%;
@@ -81,16 +86,18 @@ console.log(props.item.images)
     color: var(--main-color);
 
     > p {
+      margin-top: calc(var(--bv) * 2);
       font-size  : var(--font-size-small);
       font-weight: 400;
     }
 
     h2 {
-        display: flex;
-        gap    : 0 calc(var(--bv) * 4);
+        display    : flex;
+        align-items: center;
+        gap        : 0 calc(var(--bv) * 4);
 
         span {
-          font-size: var(--font-size-large);
+          font-size: calc(var(--bv) * 3.5);
           color    : var(--main-color);
 
           &:not(:first-of-type) {
@@ -99,6 +106,28 @@ console.log(props.item.images)
           }
         }
       }
+  }
+
+  .text {
+    line-height: 2;
+  }
+
+  .button {
+    margin-top: auto;
+    flex      : 1 0 auto;
+    max-height: calc(var(--bv) * 5.5);
+    color     : var(--accent-color);
+    border    : 1px solid var(--accent-color);
+    transition: color .3s, background-color .3s,;
+
+    > span {
+      font-size: var(--font-size-small);
+    }
+
+    &:hover {
+      color           : var(--white);
+      background-color: var(--accent-color);
+    }
   }
 }
 </style>

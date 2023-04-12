@@ -21,6 +21,7 @@ const teams = [
     subName : 'Tanaka Tarou',
     image   : 'team01.webp',
     alt     : 'team01',
+    text    : `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト`,
   },
   {
     position: 'デザイナー',
@@ -28,6 +29,7 @@ const teams = [
     subName : 'Tanaka Tarou',
     image   : 'team02.webp',
     alt     : 'team02',
+    text    : `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト`,
   },
   {
     position: 'アドバイザー',
@@ -35,6 +37,7 @@ const teams = [
     subName : 'Tanaka Tarou',
     image   : 'team03.webp',
     alt     : 'team03',
+    text    : `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト`,
   },
   {
     position: 'エンジニア',
@@ -42,6 +45,7 @@ const teams = [
     subName : 'Tanaka Tarou',
     image   : 'team01.webp',
     alt     : 'team01',
+    text    : `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト`,
   },
   {
     position: 'エンジニア',
@@ -49,6 +53,7 @@ const teams = [
     subName : 'Tanaka Tarou',
     image   : 'team02.webp',
     alt     : 'team02',
+    text    : `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト`,
   },
   {
     position: 'エンジニア',
@@ -56,6 +61,7 @@ const teams = [
     subName : 'Tanaka Tarou',
     image   : 'team03.webp',
     alt     : 'team03',
+    text    : `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト`,
   },
 ]
 const imageUrl = (image: any) => {
@@ -119,6 +125,16 @@ const toggleModal = (item: any) => {
     </Teleport>
   </SectionContainer>
 </template>
+
+<style lang="scss">
+.v-enter-active, .v-leave-active {
+  transition: opacity .5s ease;
+}
+
+.v-enter-from, .v-leave-to {
+  opacity: 0;
+}
+</style>
 
 <style lang="scss" module>
 @use '@/assets/scss/mixin' as *;
