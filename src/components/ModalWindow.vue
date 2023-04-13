@@ -14,7 +14,6 @@ const modalCloseClick = () => {
 const imageUrl = (image: any) => {
   return new URL(`/src/assets/images/${image}`, import.meta.url)
 }
-console.log(props.item.images)
 </script>
 
 <template>
@@ -53,6 +52,8 @@ console.log(props.item.images)
 </template>
 
 <style lang="scss" module>
+@use '@/assets/scss/mixin' as *;
+
 .container {
   position        : fixed;
   top             : 0;
@@ -60,6 +61,10 @@ console.log(props.item.images)
   width           : 100%;
   height          : 100vh;
   background-color: rgba(245, 245, 248, .75);
+
+  @include mediaScreen('tablet') {
+    height: 100%;
+  }
 
   .contents {
     position        : fixed;
@@ -73,6 +78,21 @@ console.log(props.item.images)
     height          : 100%;
     background-color: var(--white);
     z-index         : var(--z-index-contents);
+
+    @media (width < 1120px) {
+      flex : 1 0 292px;
+      width: 292px;
+    }
+
+    @include mediaScreen('tablet') {
+      flex: 1 0 calc((100%) / 1.5);
+      width: calc((100%) / 1.5);
+    }
+
+    @include mediaScreen('mobile') {
+      flex: 1 0 calc((100%) / 1.25);
+      width: calc((100%) / 1.25);
+    }
   }
 
   .image {

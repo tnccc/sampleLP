@@ -3,16 +3,6 @@ import { ref } from 'vue'
 import SectionContainer from '@/components/SectionContainer.vue'
 import SectionHeading from '@/components/SectionHeading.vue';
 import ModalWindow from '@/components/ModalWindow.vue';
-import { computed } from 'vue';
-//TODO
-//modalWindowを表示させるために、
-//カードの要素がクリックすされると
-//モーダル内に必要なitem(配列)の情報が渡るようにする
-
-//TODO
-//配列のデータをわざわざJsonにする必要はない
-//moduleにして別のディレクトリで管理
-//fetchで取得する
 
 const teams = [
   {
@@ -76,15 +66,14 @@ const toggleModal = (item: any) => {
 </script>
 
 <template>
-  <SectionContainer :class="$style.container">
+  <SectionContainer 
+    :class="$style.container"
+  >
     <SectionHeading 
       :en="'TEAM'"
       :ja="'チーム'"
     />
     <div :class="$style.contents">
-      <button @click="isModalOpen = true">
-        ModalOpen
-      </button>
       <div :class="$style.team">
         <ul :class="$style.list">
           <li 
