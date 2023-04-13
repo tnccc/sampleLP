@@ -5,46 +5,46 @@ import ItemCard from '@/components/item/itemCard.vue';
 
 const items = [
   {
-    images  : 'sample02.webp',
-    alt     : 'sample_02',
-    category: '2022/9/26',
-    heading : 'テキストテキストテキストテキストテキストテキスト',
+    images : 'sample02.webp',
+    alt    : 'sample_02',
+    date   : '2022/9/26',
+    heading: 'テキストテキストテキストテキストテキストテキスト',
   },
   {
-    images  : 'sample02.webp',
-    alt     : 'sample_02',
-    category: '2022/10/26',
-    heading : 'テキストテキストテキストテキストテキストテキスト',
+    images : 'sample02.webp',
+    alt    : 'sample_02',
+    date   : '2022/10/26',
+    heading: 'テキストテキストテキストテキストテキストテキスト',
   },
   {
-    images  : 'sample02.webp',
-    alt     : 'sample_02',
-    category: '2022/3/11',
-    heading : 'テキストテキストテキストテキストテキストテキスト',
+    images : 'sample02.webp',
+    alt    : 'sample_02',
+    date   : '2022/3/11',
+    heading: 'テキストテキストテキストテキストテキストテキスト',
   },
   {
-    images  : 'sample02.webp',
-    alt     : 'sample_02',
-    category: '2022/1/26',
-    heading : 'テキストテキストテキストテキストテキストテキスト',
+    images : 'sample02.webp',
+    alt    : 'sample_02',
+    date   : '2022/1/26',
+    heading: 'テキストテキストテキストテキストテキストテキスト',
   },
   {
-    images  : 'sample02.webp',
-    alt     : 'sample_02',
-    category: '2023/4/26',
-    heading : 'テキストテキストテキストテキストテキストテキスト',
+    images : 'sample02.webp',
+    alt    : 'sample_02',
+    date   : '2023/4/26',
+    heading: 'テキストテキストテキストテキストテキストテキスト',
   },
   {
-    images  : 'sample02.webp',
-    alt     : 'sample_02',
-    category: '2022/8/11',
-    heading : 'テキストテキストテキストテキストテキストテキスト',
+    images : 'sample02.webp',
+    alt    : 'sample_02',
+    date   : '2022/8/11',
+    heading: 'テキストテキストテキストテキストテキストテキスト',
   },
   {
-    images  : 'sample02.webp',
-    alt     : 'sample_02',
-    category: '2022/6/26',
-    heading : 'テキストテキストテキストテキストテキストテキスト',
+    images : 'sample02.webp',
+    alt    : 'sample_02',
+    date   : '2022/6/26',
+    heading: 'テキストテキストテキストテキストテキストテキスト',
   },
 ]
 </script>
@@ -56,21 +56,38 @@ const items = [
       :ja="'メディア'"
     />
     <div :class="$style.contents">
-      <div :class="$style.article">
-        <article :class="$style.list">
-          <ItemCard 
-            :items="items"
-          />
-        </article>
-      </div>
-      <div :class="$style.article">
-        <h3>○○についてもお伝えしています</h3>
-        <article :class="$style.list">
-          <ItemCard 
-            :items="items"
-          />
-        </article>
-      </div>
+      <article :class="$style.article">
+        <ul :class="$style.list">
+          <li 
+            v-for="item in items"
+            :key="item"
+            :class="$style.item"
+          >
+            <ItemCard
+              :images="item.images"
+              :alt="item.alt"
+              :category="item.date"
+              :heading="item.heading"
+            />
+          </li>
+        </ul>
+      </article>
+      <article :class="$style.article">
+        <ul :class="$style.list">
+          <li 
+            v-for="item in items"
+            :key="item"
+            :class="$style.item"
+          >
+            <ItemCard
+              :images="item.images"
+              :alt="item.alt"
+              :category="item.date"
+              :heading="item.heading"
+            />
+          </li>
+        </ul>
+      </article>
     </div>
   </SectionContainer>
 </template>
@@ -122,7 +139,7 @@ const items = [
         display: flex;
         gap: 0 calc(var(--bv) * 3);
   
-        > div {
+        .item {
           min-width: 250px;
   
           p {
@@ -133,11 +150,8 @@ const items = [
             font-size: var(--font-size-larger);
           }
         }
-  
-        
       }
     }
   }
-
 }
 </style>

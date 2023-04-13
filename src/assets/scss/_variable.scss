@@ -22,14 +22,14 @@
 
   //font
   --font-family-english: 'Zen Maru Gothic', sans-serif;
-  --font-size-min      : calc(var(--bv) * 1.25);
-  --font-size-small    : calc(var(--bv) * 1.75);
-  --font-size-medium   : calc(var(--bv) * 2);
-  --font-size-large    : calc(var(--bv) * 3);
-
+  --font-size-min   : calc(var(--bv) * 1.25);
+  --font-size-small : calc(var(--bv) * 1.75);
+  --font-size-medium: calc(var(--bv) * 2);
+  --font-size-large : calc(var(--bv) * 3);
   --desktop-width        : 1140px;
   --golden-ratio         : 1 / 1.1618;
   --silver-ratio         : 1 / 1.414;
+  --line-height-tight    : 1.2;
   --line-height-normal   : 1.8;
   --line-height-narrow   : 1.4;
   --letter-spacing-normal: .02em;

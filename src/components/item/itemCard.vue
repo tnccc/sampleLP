@@ -1,55 +1,55 @@
 <script setup lang="ts">
 type Props = {
-  items: { 
-    images: any,
-    alt: any,
-    heading: any,
-    text: any,
-    link: any,
-    linkText: any,
-  }
+  images: any,
+  alt: any,
+  category: any,
+  heading: any,
+  text?: any,
+  links?: [
+    {
+      text: string,
+      path: string,
+    }
+  ][]
 }
-
 const imageUrl = (image: any) => {
   return new URL(`/src/assets/images/${image}`, import.meta.url)
 }
-
-const props = withDefaults(defineProps<Props>(), {
-})
-
+const props = defineProps<Props>()
 </script>
 
 <template>
-  <div 
-    v-for="(item, index) in items"
-    :key="index"
-    :class="$style.container"
-  >
+  <div :class="$style.container">
     <figure :class="$style.image">
       <img
-        :src="imageUrl(item.images)"
-        :alt="item.alt"
+        :src="imageUrl(images)"
+        :alt="alt"
         loading="lazy"
       >
     </figure>
     <div :class="$style.heading">
       <p 
-        v-show="item.category"
+        v-show="category"
         :class="$style.category"
       >
-        {{ item.category }}
+        {{ category }}
       </p>
-      <h3>{{ item.heading }}</h3>
+      <h3>{{ heading }}</h3>
     </div>
     <div :class="$style.description">
-      <p v-html="item.text" />
-      <a 
-        v-show="item.link && item.linkText"
-        :href="item.link"
-        target="_blank"
-      >
-        {{ item.linkText }}
-      </a>
+      <p v-html="text" />
+      <div :class="$style.links">
+        <a 
+          v-for="(link, index) in links"
+          v-show="link.text && link.path"
+          :key="`link-${index}`"
+          :href="link.path"
+          target="_blank"
+          :class="$style.link"
+        >
+          {{ link.text }}
+        </a>
+      </div>
     </div>
   </div>
 </template>
@@ -66,13 +66,14 @@ const props = withDefaults(defineProps<Props>(), {
   .heading {
 
     p {
-      font-size: var(--font-size-small);
-      color    : var(--silver-gray);
+      margin-top: calc(var(--bv) * 2);
+      font-size : var(--font-size-small);
+      color     : var(--silver-gray);
     }
 
     h3 {
       margin-top: var(--bv);
-      font-size: calc(var(--font-size-large));
+      font-size : calc(var(--font-size-large));
     }
   }
 
@@ -84,12 +85,14 @@ const props = withDefaults(defineProps<Props>(), {
   }
 
   .links {
-    margin-top: calc(var(--bv) * 2);
+    padding-top   : var(--bv);
+    display       : flex;
+    flex-direction: column;
 
     .link {
       display: inline-block;
       color: var(--accent-color);
-
+  
       &:hover {
         text-decoration: underline;
       }
