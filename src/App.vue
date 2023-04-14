@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import GlobalHeader from '@/components/GlobalHeader.vue'
+import GlobalFooter from '@/components/GlobalFooter.vue'
 import SectionOfHero from '@/components/section/OfHero.vue'
 import SectionOfAbout from '@/components/section/OfAbout.vue'
 import SectionOfSolution from '@/components/section/OfSolution.vue'
@@ -18,6 +19,7 @@ import SectionOfTeam from '@/components/section/OfTeam.vue'
     <SectionOfMedia />
     <SectionOfTeam />
   </main>
+  <GlobalFooter />
 </template>
 
 <style lang="scss" module>
