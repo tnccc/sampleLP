@@ -3,20 +3,22 @@
 </script>
 
 <template>
-  <div :class="$style.container">
-    <figure :class="$style.image">
-      <img
-        src="@/assets/images/bg.jpg"
-        alt=""
-      >
-    </figure>
-    <div :class="$style.description">
-      <h1 :class="$style.logo">
-        <span>距離を越える。</span>
-        <span>常識を越える。</span>
-      </h1>
+  <section class="element">
+    <div :class="$style.container">
+      <figure :class="$style.image">
+        <img
+          src="@/assets/images/bg.jpg"
+          alt=""
+        >
+      </figure>
+      <div :class="$style.description">
+        <h1 :class="$style.logo">
+          <span>距離を越える。</span>
+          <span>常識を越える。</span>
+        </h1>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <style lang="scss" module>
