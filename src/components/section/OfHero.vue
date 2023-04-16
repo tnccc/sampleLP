@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <section class="element">
+  <section :class="$style.hero">
     <div :class="$style.container">
       <figure :class="$style.image">
         <img

@@ -5,7 +5,7 @@ import SectionHeading from '@/components/SectionHeading.vue';
 </script>
 
 <template>
-  <SectionContainer :class="[$style.container, 'element']">
+  <SectionContainer :class="$style.container">
     <SectionHeading 
       :en="'ABOUT'"
       :ja="'アバウト'"

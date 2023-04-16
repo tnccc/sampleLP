@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { nextTick } from 'vue'
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import GlobalFooter from '@/components/GlobalFooter.vue'
 import SectionOfHero from '@/components/section/OfHero.vue'
@@ -11,20 +12,28 @@ import SectionOfTeam from '@/components/section/OfTeam.vue'
 
 //ioで監視する要素を取得
 const elements = ref<NodeListOf<HTMLElement>>()
-
+const currnetElement = ref()
+const options = {
+  root      : null,
+  rootMargin: '-50% 0px',
+  threshold : 0,
+}
 //ioで実行したい処理
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
+const callback = (entries: any) => {
+  entries.forEach((entry: any) => {
     if(entry.isIntersecting) {
       console.log(`要素の取得に成功 => ${entry.target.className}`)
     }
   })
-})
-
+}
+const observer = new IntersectionObserver(callback, options)
 onMounted(() => {
-  elements.value = document.querySelectorAll('.element')
-  Array.from(elements.value).forEach(el => {
-    observer.observe(el)
+  nextTick(() => {
+    elements.value = document.querySelectorAll('.element')
+    Array.from(elements.value)
+    elements.value.forEach(el => {
+      observer.observe(el)
+    })
   })
 })
 </script>
@@ -32,12 +41,12 @@ onMounted(() => {
 <template>
   <GlobalHeader :class="$style.header" />
   <main :class="$style.main">
-    <SectionOfHero ref="elements" />
-    <SectionOfAbout ref="elements" />
-    <SectionOfSolution />
-    <SectionOfWorks />
-    <SectionOfMedia />
-    <SectionOfTeam />
+    <SectionOfHero :class="'element'" />
+    <SectionOfAbout :class="'element'" />
+    <SectionOfSolution :class="'element'" />
+    <SectionOfWorks :class="'element'" />
+    <SectionOfMedia :class="'element'" />
+    <SectionOfTeam :class="'element'" />
   </main>
   <GlobalFooter />
 </template>
