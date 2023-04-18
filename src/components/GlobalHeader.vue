@@ -1,39 +1,63 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+type Props = {
+  scrollElements: any,
+}
+const props = defineProps<Props>()
 const isMenuOpen = ref(false)
 const lists: {id: string, section: string, link: string}[] = [
   {
     id     : '1',
     section: 'ABOUT',
-    link   : '/',
+    link   : '#about',
   },
   {
     id     : '2',
     section: 'SOLUTION',
-    link   : '/',
+    link   : '#solution',
   },
   {
     id     : '3',
     section: 'WORKS',
-    link   : '/',
+    link   : '#works',
   },
   {
     id     : '4',
     section: 'MEDIA',
-    link   : '/',
+    link   : '#media',
   },
   {
     id     : '5',
     section: 'TEAM',
-    link   : '/',
+    link   : '#team',
   },
 ]
+const scrollToSection = ( sectionId = '/') => {
+  const targetElement = document.getElementById(sectionId)
+  const hero: HTMLElement | null = document.getElementById('hero')
+  if(targetElement) {
+    window.scrollTo({
+      top     : targetElement.offsetTop,
+      behavior: 'smooth', // スムーズスクロールを有効にする
+    })
+  } else {
+    window.scrollTo({
+      top     : hero.offsetTop,
+      behavior: 'smooth', // スムーズスクロールを有効にする
+    })
+  }
+}
 </script>
 
 <template>
   <header :class="$style.header">
     <p :class="$style.logo">
-      <a href="/">LOGO</a>
+      <a
+        href="/" 
+        @click.prevent="scrollToSection()"
+      >
+        LOGO
+      </a>
     </p>
     <button 
       :class="[$style.hamburger, isMenuOpen ? $style.open : '']"
@@ -57,7 +81,10 @@ const lists: {id: string, section: string, link: string}[] = [
             :data-section="item.section.toLowerCase()"
             :class="[$style.item, 'item']"
           >
-            <a :href="item.link">
+            <a 
+              :href="item.link"
+              @click.prevent="scrollToSection(item.section.toLowerCase())"
+            >
               {{ item.section }}
             </a>
           </li>

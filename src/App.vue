@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch } from 'vue'
-import { nextTick } from 'vue'
+import { onMounted, ref } from 'vue'
 import GlobalHeader from '@/components/GlobalHeader.vue'
 import GlobalFooter from '@/components/GlobalFooter.vue'
 import SectionOfHero from '@/components/section/OfHero.vue'
@@ -23,8 +22,6 @@ const options = {
 const callback = (entries: any) => {
   entries.forEach((entry: any) => {
     if(entry.isIntersecting) {
-      const targetSection = entry.target.className
-      console.log(targetSection)
       navigationElements.value?.forEach(el => {
         const currentNavigation = el.getAttribute('data-section')
         if(currentNavigation !== null && entry.target.classList.contains(currentNavigation)) {
@@ -42,26 +39,44 @@ const callback = (entries: any) => {
 const observer = new IntersectionObserver(callback, options)
 // 各要素の取得
 onMounted(() => {
-  nextTick(() => {
-    elements.value = document.querySelectorAll('.element')
-    navigationElements.value = document.querySelectorAll('.item[data-section]')
-    elements.value.forEach(el => {
-      observer.observe(el)
-    })
+  elements.value = document.querySelectorAll('.element')
+  navigationElements.value = document.querySelectorAll('.item[data-section]')
+  elements.value.forEach(el => {
+    observer.observe(el)
   })
 })
-
 </script>
 
 <template>
-  <GlobalHeader :class="$style.header" />
+  <GlobalHeader 
+    :scroll-elements="elements"
+    :class="$style.header" 
+  />
   <main :class="$style.main">
-    <SectionOfHero :class="'element hero'" />
-    <SectionOfAbout :class="'element about'" />
-    <SectionOfSolution :class="'element solution'" />
-    <SectionOfWorks :class="'element works'" />
-    <SectionOfMedia :class="'element media'" />
-    <SectionOfTeam :class="'element team'" />
+    <SectionOfHero
+      id="hero"
+      :class="'element hero'"
+    />
+    <SectionOfAbout
+      id="about"
+      :class="'element about'"
+    />
+    <SectionOfSolution
+      id="solution"
+      :class="'element solution'"
+    />
+    <SectionOfWorks
+      id="works"
+      :class="'element works'"
+    />
+    <SectionOfMedia
+      id="media"
+      :class="'element media'"
+    />
+    <SectionOfTeam
+      id="team"
+      :class="'element team'"
+    />
   </main>
   <GlobalFooter />
   <teleport
