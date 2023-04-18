@@ -59,7 +59,8 @@ const lists: {id: string, section: string, link: string}[] = [
           <li 
             v-for="item in lists"
             :key="item.id"
-            :class="$style.item"
+            :data-section="item.section.toLowerCase()"
+            :class="[$style.item, 'item']"
           >
             <a :href="item.link">
               {{ item.section }}
@@ -78,6 +79,16 @@ const lists: {id: string, section: string, link: string}[] = [
     </nav>
   </header>
 </template>
+
+<style lang="scss">
+.item {
+  
+  &.current {
+    font-weight: bold;
+    color      : var(--accent-color);
+  }
+}
+</style>
 
 <style lang="scss" module>
 @use '@/assets/scss/mixin' as *;

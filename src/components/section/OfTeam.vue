@@ -66,9 +66,7 @@ const toggleModal = (item: any) => {
 </script>
 
 <template>
-  <SectionContainer 
-    :class="$style.container"
-  >
+  <SectionContainer :class="$style.container">
     <SectionHeading 
       :en="'TEAM'"
       :ja="'チーム'"
