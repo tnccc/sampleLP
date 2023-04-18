@@ -82,9 +82,10 @@ const lists: {id: string, section: string, link: string}[] = [
 
 <style lang="scss">
 .item {
-
+  
   &.current {
-    color: var(--accent-color);
+    font-weight: bold;
+    color      : var(--accent-color);
   }
 }
 </style>
