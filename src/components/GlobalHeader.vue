@@ -59,6 +59,7 @@ const lists: {id: string, section: string, link: string}[] = [
           <li 
             v-for="item in lists"
             :key="item.id"
+            :data-section="item.section.toLowerCase()"
             :class="[$style.item, 'item']"
           >
             <a :href="item.link">
@@ -82,7 +83,7 @@ const lists: {id: string, section: string, link: string}[] = [
 <style lang="scss">
 .item {
 
-  &.is-active {
+  &.current {
     color: var(--accent-color);
   }
 }
