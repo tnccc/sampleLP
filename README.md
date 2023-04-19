@@ -1,4 +1,9 @@
-# sample
+# URL
+
+AWS S3に挑戦したいと思い、ホスティングサーバーをS3に選定
+http://ir-sample-lp.s3-website-ap-northeast-1.amazonaws.com/
+
+## sample
 
 This template should help get you started developing with Vue 3 in Vite.
 
