@@ -59,8 +59,8 @@ const items = [
       <article :class="$style.article">
         <ul :class="$style.list">
           <li 
-            v-for="item in items"
-            :key="item"
+            v-for="(item, index) in items"
+            :key="index"
             :class="$style.item"
           >
             <ItemCard
@@ -75,8 +75,8 @@ const items = [
       <article :class="$style.article">
         <ul :class="$style.list">
           <li 
-            v-for="item in items"
-            :key="item"
+            v-for="(item, index) in items"
+            :key="index"
             :class="$style.item"
           >
             <ItemCard

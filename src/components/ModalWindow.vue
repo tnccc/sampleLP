@@ -12,7 +12,7 @@ const modalCloseClick = () => {
   emit('onClick')
 }
 const imageUrl = (image: any) => {
-  return new URL(`/src/assets/images/${image}`, import.meta.url)
+  return new URL(`/src/assets/images/${image}`, import.meta.url).toString()
 }
 </script>
 

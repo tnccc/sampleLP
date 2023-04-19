@@ -42,7 +42,7 @@ const scrollToSection = ( sectionId = '/') => {
     })
   } else {
     window.scrollTo({
-      top     : hero.offsetTop,
+      top     : hero ? hero.offsetTop : 0,
       behavior: 'smooth', // スムーズスクロールを有効にする
     })
   }

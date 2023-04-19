@@ -5,15 +5,13 @@ type Props = {
   category: any,
   heading: any,
   text?: any,
-  links?: [
-    {
+  links?: Array<{
       text: string,
       path: string,
-    }
-  ][]
+    }>
 }
 const imageUrl = (image: any) => {
-  return new URL(`/src/assets/images/${image}`, import.meta.url)
+  return new URL(`/src/assets/images/${image}`, import.meta.url).toString()
 }
 const props = defineProps<Props>()
 </script>
@@ -41,7 +39,7 @@ const props = defineProps<Props>()
       <div :class="$style.links">
         <a 
           v-for="(link, index) in links"
-          v-show="link.text && link.path"
+          v-show="link && link.text"
           :key="`link-${index}`"
           :href="link.path"
           target="_blank"
